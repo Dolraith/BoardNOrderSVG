@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2 bg-secondary">
+            <ul class="list">
+                <li>One</li>
+                <li>Two</li>
+                <li>Three</li>
+            </ul>
+        </div>
+        <div class="col-8 bg-primary container">
+            <div class="row" v-for="crow in cells">
+                <div class="col-2 bg-success" v-for="ccol in crow">
+                    <img v-bind:src="ccol.path" alt="An SVG image?" style="width:80%"/>
+                    {{ccol.name}}
+                </div>
+            </div>
+        </div>
+        <div class="col-2 bg-secondary">
+            <a href="svagrack/tags">Tag Admin</a>
+        </div>
+    </div>
+</div>

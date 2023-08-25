@@ -13,12 +13,10 @@ class CTags extends Controller {
 
     async addTag(){
         var factory = new Data_Factory(Svagrack_Tag);
-        console.log("I'm here!")
         var name = this._request.body.name;
         var tag = factory.make();
         tag.set("name",name);
         var resultId = await tag.save();
-        console.log(resultId);
         this.setView({message:"Saved!", success:true, _id:resultId});
     }
 

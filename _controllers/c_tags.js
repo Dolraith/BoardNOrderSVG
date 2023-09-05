@@ -20,8 +20,11 @@ class CTags extends Controller {
         this.setView({message:"Saved!", success:true, _id:resultId});
     }
 
-    async load(){
-
+    async removeTag(){
+        var factory = new Data_Factory(Svagrack_Tag);
+        var id = this._request.body.tagId;
+        var success = await factory.delete(id);
+        this.setView({message:"Deleted!", success: success});
     }
 }
 module.exports=CTags

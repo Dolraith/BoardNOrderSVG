@@ -20,7 +20,7 @@ export function initVue(initData, components){
                 }
                 data.cells.push(row);
             }
-            for(i in initData){
+            for(var i in initData){
                 data[i] = initData[i];
             }
             return data;

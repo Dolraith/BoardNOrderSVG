@@ -1,0 +1,32 @@
+<table class="table table-striped col-8">
+    <thead>
+        <tr>
+            <td class="header">Folder</td>            
+            <td class="header"># Files</td>
+            <td class="header">Last Scan</td>
+            <td class="header">Remove</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="folders, foldersIndex in folders">
+            <td>{{decodeURI(folders.path)}}</td>
+            <td>{{folders.count}}</td>
+            <td>{{new Date(folders.last_scan).toUTCString()}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" v-on:click="scan(folders)">Scan</button>
+                <button type="button" class='btn btn-primary' v-on:click="removeFolder(folders._id, foldersIndex)">X</button>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <div class="input-group">
+                    <input type="text" class="form-control" v-model="newFolderPath">
+                    <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" v-on:click="addFolder()">Add</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

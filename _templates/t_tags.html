@@ -1,17 +1,19 @@
 <table class="table table-striped col-4">
     <thead>
         <tr>
-            <td class="header">Tag</td>
+            <td class="header">Tag</td>            
             <td class="header">Count</td>
+            <td class="header">Remove</td>
         </tr>
     </thead>
     <tbody>
-        <tr v-for="tag in tags">
+        <tr v-for="tag, tagIndex in tags">
             <td>{{tag.name}}</td>
             <td>{{tag.count}}</td>
+            <td><button type="button" class='btn btn-primary' v-on:click="removeTag(tag._id, tagIndex)">X</button></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <div class="input-group">
                     <input type="text" class="form-control" v-model="newTagName">
                     <div class="input-group-append">
@@ -19,6 +21,6 @@
                     </div>
                 </div>
             </td>
-        </tr>
+        </tr>6
     </tbody>
 </table>

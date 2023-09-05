@@ -16,7 +16,6 @@ export function initVue(initData, components){
         methods:{
             async addTag(){
                 const body = JSON.stringify({name:this.newTagName});
-                console.log(body);
                 const request = new Request("tags/addTag",
                 {
                     method: "POST",
@@ -34,7 +33,21 @@ export function initVue(initData, components){
                     this. newTagName = "";
                 }
                 this.tags.sort((a,b)=>{return a.name.localeCompare(b.name)});
-                console.log(data);
+            },
+            async removeTag(id, index){
+                const body = JSON.stringify({tagId:id});
+                const request = new Request("tags/removeTag",
+                {
+                    method: "POST",
+                    headers: new Headers({'content-type':'application/json'}),
+                    cache: "default",
+                    body:body
+                });
+                var data = await fetch(request).then((response) => response.json());
+                if(data.success == true){
+                    this.tags.splice(index, 1);
+                    console.log("spliced!");
+                }
             }
         }
     });

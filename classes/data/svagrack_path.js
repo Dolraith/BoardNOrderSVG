@@ -1,11 +1,11 @@
-Data_Factory = require("./svagrack_data_factory");
+Data_Class = require(global.classPaths.data_super)
 class Svagrack_Path extends Data_Class{
     constructor(){
         super()
         this.table = "svagrack_path";
         this.fields({
-            name: "",
-            path:""
+            path:"",
+            svagrack_folder_id:0
         })
     }
 }

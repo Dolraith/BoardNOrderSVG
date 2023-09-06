@@ -46,7 +46,6 @@ export function initVue(initData, components){
                 var data = await fetch(request).then((response) => response.json());
                 if(data.success == true){
                     this.tags.splice(index, 1);
-                    console.log("spliced!");
                 }
             }
         }

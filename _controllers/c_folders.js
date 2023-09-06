@@ -60,8 +60,6 @@ class CFodlers extends Controller {
         var removed = 0;
         var newPaths = 0;
         var oldPaths = 0;
-
-        console.log(paths);
         for(path of paths){
             const decoded = decodeURI(path.path);
             if(fs.existsSync(decoded)){
@@ -89,7 +87,6 @@ class CFodlers extends Controller {
         }
 
         this.setView({success:true, count: count, new:newPaths, old: oldPaths, removed: removed});
-        console.log(results);
     }
 
     scanR(dir){

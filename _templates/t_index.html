@@ -1,23 +1,66 @@
-<div class="container">
+<div class="container col-12">
     <div class="row">
-        <div class="col-2 bg-secondary">
-            <ul class="list">
-                <li>One</li>
-                <li>Two</li>
-                <li>Three</li>
-            </ul>
+        <div class="col-2">
+            <h2  class="text-center">Filter Options</h2>
+            <hr>
+            <form class="form-inline">
+                <div class="form-group mb-2">
+                    <label class="label">Filter by tag:&nbsp;</label>
+                    <select v-model="tag_selected" class="form-control">
+                        <option v-for="tag in tags" v-bind:value="tag._id">{{tag.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <button type="button" class="btn btn-primary" v-on:click="singleTagSearch()">Go</button>
+                </div>
+            </form>
+            <button type="button" class="btn btn-primary" v-on:click="resetTagSearch()">Reset Filters</button>
         </div>
-        <div class="col-8 bg-primary container">
-            <div class="row" v-for="crow in cells">
-                <div class="col-2 bg-success" v-for="ccol in crow">
-                    <img v-bind:src="ccol.path" alt="An SVG image?" style="width:80%"/>
-                    {{ccol.name}}
+        <div class="col-8 container">
+            Page: <div class="d-inline" v-for="(pagNum,pagIndex) in pages">
+                <a class="d-inline" href="#" v-if="pagIndex != page" v-on:click="page=pagIndex">{{pagNum}}</a>
+                <div class="d-inline" v-else>{{pagNum}}</div>
+            </div>
+            <div class="row" v-for="(m,row) in rows" v-bind:key="row">
+                <div class="col-2 border border-primary"  v-for="(n,col) in cols" v-bind:key="col">
+                    <div v-if="getPath(row, col)" v-on:click="selectPath(row,col)" data-bs-target="#myModal" data-bs-toggle="modal">
+                        <img v-bind:src="'svagrack/index/getImage?pathId='+getPath(row, col)._id" class="img-fluid">
+                        {{extractName(getPath(row,col))}}
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-2 bg-secondary">
+        <div class="col-2">
             <a href="svagrack/tags">Tag Admin</a><br>
             <a href="svagrack/folders">Folder Admin</a>
+        </div>
+    </div>
+
+
+    <div class="modal " id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{path_selected.name}}</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img v-bind:src="path_selected.source" class="img-fluid">
+                    <hr>
+                    <span class="badge badge-secondary rounded-pill" v-for="tag in path_selected.tags" style="margin-right:4px" v-on:click="untagPath(tag)">{{tag.name}}</span>
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label class="label">Add tag:&nbsp;</label>
+                            <select v-model="add_tag_selected" class="form-control">
+                                <option v-for="tag in tags" v-bind:value="tag._id">{{tag.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <button type="button" class="btn btn-primary" v-on:click="tagPath(path_selected._id)">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

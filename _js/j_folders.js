@@ -57,7 +57,6 @@ export function initVue(initData, components){
                 var data = await fetch(request).then((response) => response.json());
                 if(data.success == true){
                     this.folders.splice(index, 1);
-                    console.log("spliced!");
                 }
             },
             async scan(folder){
@@ -71,7 +70,6 @@ export function initVue(initData, components){
                 });
                 var data = await fetch(request).then((response) => response.json());
                 if(data.success == true){
-                    console.log(data);
                     folder.last_scan = new Date();
                     folder.count = data.count;
                 }

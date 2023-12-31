@@ -1,12 +1,13 @@
-Data_Class = require(global.classPaths.data_super)
+/* global global */
+Data_Class = require(global.classPaths.data_super);
 class Svagrack_Path extends Data_Class{
     constructor(){
-        super()
+        super();
         this.table = "svagrack_path";
         this.fields({
             path:"",
             svagrack_folder_id:0
-        })
+        });
     }
 }
 

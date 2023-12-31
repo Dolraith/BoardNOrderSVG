@@ -1,7 +1,8 @@
+/* global global */
 Data_Factory = require("../../feather_core/classes/data_factory");
 Svagrack_Path = require("./../classes/data/svagrack_path");
 Svagrack_Tag = require("./../classes/data/svagrack_tag");
-Svagrack_Path_Tag_Map = require("../classes/data/svagracl_path_tag_map");
+Svagrack_Path_Tag_Map = require("../classes/data/svagrack_path_tag_map");
 
 
 var Controller = require(global.classPaths.controller);
@@ -50,4 +51,4 @@ class CIndex extends Controller {
         this.setView({success:true,paths:paths});
     }
 }
-module.exports=CIndex
+module.exports=CIndex;

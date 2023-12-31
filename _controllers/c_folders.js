@@ -1,3 +1,4 @@
+/* global global */
 Controller = require(global.classPaths.controller);
 Data_Factory = require("../../feather_core/classes/data_factory");
 Svagrack_Folder = require("./../classes/data/svagrack_folder");
@@ -19,7 +20,7 @@ class CFodlers extends Controller {
         }
         for(var path of paths){
             for(var folder of folders){
-                if(path.svagrack_folder_id == folder._id){
+                if(path.svagrack_folder_id === folder._id){
                     folder.count++;
                 }
             }
@@ -96,7 +97,7 @@ class CFodlers extends Controller {
             const fullPath = dir + path.sep + file;
             const stat = fs.lstatSync(fullPath);
             if(stat.isDirectory()){
-                results = results.concat(scanR(fullPath));
+                results = results.concat(this.scanR(fullPath));
             }else{
                 var extension = path.extname(file);
                 if(this.fileTypes.includes(extension)){
@@ -107,4 +108,4 @@ class CFodlers extends Controller {
         return results;
     }
 }
-module.exports=CFodlers
+module.exports=CFodlers;

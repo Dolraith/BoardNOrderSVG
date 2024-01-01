@@ -1,5 +1,5 @@
 /* global global */
 
 global._permissions.addPermissions([
-    {name:"global_admin",label:"Global Admin",module:"Core"}
+    {name:"svagrack_admin",label:"SvagRack Admin",module:"Svagrack"}
 ]);

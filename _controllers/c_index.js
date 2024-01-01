@@ -43,7 +43,6 @@ class CIndex extends Controller {
         var factory = new Data_Factory(Svagrack_Path);
         var fullQuery = "select svagrack_path.*,svagrack_path_tag_map.svagrack_tag_id from svagrack_path join svagrack_path_tag_map on svagrack_path._id = svagrack_path_tag_map.svagrack_path_id where " + tagQuery;
         var results = await factory.direct_query(fullQuery);
-        console.log(results);
         this.setView({success:true,paths:results});
     }
     async getAllPaths(){

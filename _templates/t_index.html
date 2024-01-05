@@ -47,7 +47,7 @@
                 <div class="modal-body">
                     <img v-bind:src="path_selected.source" class="img-fluid">
                     <hr>
-                    <span class="badge badge-secondary rounded-pill" v-for="tag in path_selected.tags" style="margin-right:4px" v-on:click="untagPath(tag)">{{tag.name}}</span>
+                    <span class="badge text-bg-secondary rounded-pill" v-for="tag in path_selected.tags" style="margin-right:4px" v-on:click="untagPath(tag)">{{tag.name}}</span>
                     <form class="form-inline">
                         <div class="form-group mb-2">
                             <label class="label">Add tag:&nbsp;</label>
